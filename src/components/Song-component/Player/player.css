@@ -1,0 +1,76 @@
+.player-slider {
+    width: 100%; /* Make the slider take up the full width of its container */
+    padding: 10px 0; /* Add some padding for spacing */
+}
+
+.slider {
+    -webkit-appearance: none; /* Remove default styling */
+    width: 100%; /* Full width */
+    height: 5px; /* Height of the slider */
+    background: #ddd; /* Background color of the slider track */
+    border-radius: 5px; /* Rounded corners */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Slight transparency */
+    transition: opacity 0.2s; /* Smooth transition on hover */
+}
+
+/* Handle styling */
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Remove default styling */
+    appearance: none;
+    width: 20px; /* Width of the handle */
+    height: 20px; /* Height of the handle */
+    background: #ff5722; /* Color of the handle */
+    border-radius: 50%; /* Round shape */
+    cursor: pointer; /* Cursor changes to pointer on hover */
+    transition: background 0.2s; /* Smooth transition on hover */
+}
+
+/* Handle hover effect */
+.slider::-webkit-slider-thumb:hover {
+    background: #e64a19; /* Darker color on hover */
+}
+
+/* Active state when dragging */
+.slider:active::-webkit-slider-thumb {
+    background: #d84315; /* Even darker color when active */
+}
+
+/* For Firefox */
+.slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #ff5722;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.slider::-moz-range-thumb:hover {
+    background: #e64a19;
+}
+
+.slider:active::-moz-range-thumb {
+    background: #d84315;
+}
+
+/* player.css */
+
+/* player.css */
+
+.player-slider {
+    position: relative;
+  }
+  
+  .volume-slider {
+    display: block; /* Ensure the slider is always visible when needed */
+    position: absolute;
+    bottom: 30px; /* Adjust this to position the slider as needed */
+    right: 0;
+    width: 100px; /* Adjust the width as needed */
+    opacity: 0.8;
+    z-index: 1; /* Ensure the slider is on top of other elements */
+    transition: opacity 0.3s;
+  }
+  
+  

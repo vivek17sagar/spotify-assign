@@ -2,10 +2,15 @@ import { Box } from "@mui/material";
 import Logo from "../assets/Logo.svg";
 import Profile from '../assets/Profile.png';
 import { Songs } from "./Song-component/Songs";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 const MainLayout = () => {
   const [bgColor, setBgColor] = useState("#160D5E");
+
+
+
+
+  
 
   return (
     <Box
@@ -13,6 +18,7 @@ const MainLayout = () => {
         display: "flex",
         justifyContent: "space-between",
         height: "100vh",
+        width:"100%",
         background: `linear-gradient(to bottom right, ${bgColor}, #8C6D3C)`,
         transition: "background 4s ease", // Corrected property name
       }}
@@ -33,8 +39,8 @@ const MainLayout = () => {
           <img src={Profile} width="48px" height="48px" alt="Profile" />
         </div>
       </Box>
-      <Box>
-        <Songs setBgColor={setBgColor} />
+      <Box sx={{width:"75%"}}>
+      <Songs setBgColor={setBgColor} />
       </Box>
     </Box>
   );
