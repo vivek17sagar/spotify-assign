@@ -1,0 +1,25 @@
+
+
+ .songListContainer {
+      width: 35% !important;
+    }
+
+    @media screen and (max-width: 900px) {
+
+        .songListContainer {
+            display: none;
+          }
+        
+          .songListContainer.show {
+            display: block;
+            width: 80% !important;
+          }
+
+          .playerContainer{
+            display: block;
+          }
+
+          .playerContainer.hide{
+            display: none;
+          }
+      }

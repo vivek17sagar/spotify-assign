@@ -4,5 +4,26 @@
 }
 
 .list:hover {
-  transform: scale(1.02); /* Slightly enlarges the element on hover */
+  transform: scale(1.02); 
 }
+
+
+.songList{
+width: 100%;
+color: white;
+font-family: Inter;
+height: 70vh;
+margin-top: 10px;
+overflow-y: scroll;
+box-shadow: inset 0px -10px 10px -10px rgba(0, 0, 0, 0.5);
+
+
+}
+
+.songList::-webkit-scrollbar {
+  display: none;
+}
+
+
+
+

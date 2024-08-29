@@ -4,6 +4,7 @@ import SearchBar from "./SearchBar/SearchBar";
 import SongList from "./SongList/SongList";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import './Songs.css';
 import Player from "./Player/Player";
 
 export const Songs = ({ handleColor }) => {
@@ -11,12 +12,13 @@ export const Songs = ({ handleColor }) => {
   const [song, setSong] = useState();
   const [active, setActive] = useState(0);
   const [filterSong, setFilterSong] = useState([]);
+  const [isVisible, setIsVisible] = useState(false);
 
   const filterSongSearch = (param) => {
     const getSearchSong = songList.filter((item) => {
       const art = item.artist.toUpperCase();
       const nam = item.name.toUpperCase();
-      const searchParam = param.toUpperCase(); // Convert param to uppercase
+      const searchParam = param.toUpperCase();
       return art.includes(searchParam) || nam.includes(searchParam);
     });
 
@@ -24,7 +26,6 @@ export const Songs = ({ handleColor }) => {
     setFilterSong(getSearchSong);
   };
 
-  // Convert arrayBuffer to Base64 string
   function convertToBase64(arrayBuffer) {
     const binaryString = Array.from(new Uint8Array(arrayBuffer))
       .map((byte) => String.fromCharCode(byte))
@@ -32,50 +33,54 @@ export const Songs = ({ handleColor }) => {
     return `data:image/jpeg;base64,${btoa(binaryString)}`;
   }
 
+  const handleResponsive = () => {
+    setIsVisible((prev) => !prev); 
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch the list of songs
         const songsResponse = await axios.get(
           "https://cms.samespace.com/items/songs"
         );
         const songs = songsResponse?.data?.data || [];
 
-        // Prepare requests to fetch cover images
         const coverRequests = songs.map((item) =>
           axios.get(`https://cms.samespace.com/assets/${item?.cover}`, {
-            responseType: "arraybuffer", // Ensure we get binary data
+            responseType: "arraybuffer",
           })
         );
 
-        // Fetch all cover images in parallel
         const coverResponses = await Promise.all(coverRequests);
 
-        // Convert cover images to Base64 and update the song list
         const modifiedSongs = songs.map((item, index) => {
           const base64Cover = convertToBase64(coverResponses[index].data);
           return { ...item, cover: base64Cover };
         });
 
         setSongList(modifiedSongs);
+        
       } catch (error) {
         console.error("Error fetching or processing data:", error);
       }
     };
 
     fetchData();
-  }, []); // Empty dependency array to run only once on mount
+  }, []);
+
+  useEffect(() => {
+    setFilterSong(songList);
+  }, [songList]);
 
   return (
     <Box
       sx={{
         display: "flex",
         justifyContent: "space-around",
-        alignItems: "center",
       }}
     >
-      <Box>
-        <Sidebar active={active} setActive={setActive} />
+      <Box className={`songListContainer ${isVisible ? "show" : ""}`}>
+        <Sidebar active={active} setActive={setActive} isVisible={isVisible} setIsVisible={setIsVisible}/>
         <SearchBar filterSongSearch={filterSongSearch} />
         <SongList
           songList={filterSong}
@@ -84,12 +89,13 @@ export const Songs = ({ handleColor }) => {
           active={active}
         />
       </Box>
-      <Box>
+      <Box className={`playerContainer ${isVisible ? "hide" : ""}`}>
         <Player
           song={songList[song]?.url}
           index={song}
           setSong={setSong}
           songList={songList}
+          handleResponsive={handleResponsive}
         />
       </Box>
     </Box>

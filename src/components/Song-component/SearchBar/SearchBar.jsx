@@ -1,5 +1,6 @@
 import { Box, InputAdornment, TextField } from "@mui/material";
 import Vector from "../../../assets/Vector.png";
+import './SearchBar.css'
 
 const SearchBar = ({ filterSongSearch }) => {
   const debounce = (func, delay) => {
@@ -14,7 +15,7 @@ const SearchBar = ({ filterSongSearch }) => {
 
   const handleChange = debounce((val) => {
     filterSongSearch(val.target.value);
-  }, 500); // 300ms debounce delay
+  }, 500);
 
   return (
     <Box
@@ -29,6 +30,7 @@ const SearchBar = ({ filterSongSearch }) => {
         id="outlined-basic"
         placeholder="Search Song, Artist"
         variant="outlined"
+        className="searchBar"
         onChange={handleChange}
         InputProps={{
           endAdornment: (
@@ -41,15 +43,15 @@ const SearchBar = ({ filterSongSearch }) => {
               color: "white",
             },
             input: {
-              height: "40x",
-              width: "400px",
+              // height: "40px",
+              // width: "100%",
               color: "white",
             },
           },
         }}
         sx={{
           "& .MuiOutlinedInput-root": {
-            backgroundColor: "#FFFFFF14", // Light whitish background
+            backgroundColor: "#FFFFFF14", 
           },
         }}
       />

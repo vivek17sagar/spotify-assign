@@ -4,15 +4,15 @@ import "./player.css";
 import group from "../../../assets/Group7.png";
 import vector1 from "../../../assets/Vector1.png";
 import vector2 from "../../../assets/Vector2.png";
-import pause from "../../../assets/pause.png"; // Pause icon
-import prev from "../../../assets/prev.png"; // Previous icon
-import vector3 from "../../../assets/Vector3.png"; // Volume icon
-
-const Player = ({ song, index, setSong, songList }) => {
+import pause from "../../../assets/pause.png"; 
+import prev from "../../../assets/prev.png"; 
+import vector3 from "../../../assets/Vector3.png"; 
+import playercd from "../../../assets/playercd.jpg"; 
+const Player = ({ song, index, setSong, songList,handleResponsive }) => {
   const [songDuration, setSongDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [volume, setVolume] = useState(1); // Volume range: 0.0 to 1.0
+  const [volume, setVolume] = useState(1); 
   const [isMuted, setIsMuted] = useState(false);
   const [showVolumeSlider, setShowVolumeSlider] = useState(false);
   const audioRef = useRef(null);
@@ -105,14 +105,12 @@ const Player = ({ song, index, setSong, songList }) => {
   function secondsToMinutes(seconds) {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
-    // Pad the seconds with leading zero if less than 10
     const formattedSeconds =
       remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds;
     return `${minutes}:${formattedSeconds}`;
   }
 
-  // Example usage:
-  console.log(secondsToMinutes(125)); // Output: "2:05"
+  console.log(secondsToMinutes(125)); 
 
   console.log(songList[index]);
   return (
@@ -151,21 +149,14 @@ const Player = ({ song, index, setSong, songList }) => {
         </Box>
         <Box sx={{ marginTop: 2 }}>
           <div
-            style={{
-              width: "480px",
-              height: "480px",
-              // border: "3px solid red",
-              borderRadius: "8px",
-              overflow: "hidden",
-              // border: "1px solid white",
-            }}
+          className="playerCover"
+           
           >
             <img
-              src={songList[index]?.cover} // Assuming the cover is still in base64 format
+              src={songList[index]?.cover ? songList[index]?.cover : playercd} 
               alt="uploaded document"
               style={{ width: "100%" }}
             />
-            {/* Add album art or any other content here */}
           </div>
         </Box>
         <Box sx={{ marginTop: 2 }}>
@@ -204,7 +195,7 @@ const Player = ({ song, index, setSong, songList }) => {
             <img
               src={group}
               alt="group Icon"
-              //   onClick={handlePrevious}
+              onClick={()=>handleResponsive("visible")}
               style={{ cursor: "pointer" }}
             />
             <img

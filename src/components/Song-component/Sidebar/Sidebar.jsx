@@ -1,16 +1,18 @@
 import { Box, Typography } from "@mui/material";
 import { useState } from "react";
 
-const Sidebar = ({ active, setActive }) => {
-  console.log(active);
+const Sidebar = ({ active, setActive,isVisible,setIsVisible }) => {
+  console.log(isVisible);
   return (
+    <Box sx={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
     <Box
       sx={{
         display: "flex",
         gap: "20px",
         color: "white",
-        marginBottom: "25px",
+        marginBottom: "20px",
         cursor: "pointer",
+        marginTop:"20px"
       }}
     >
       <Typography
@@ -43,6 +45,9 @@ const Sidebar = ({ active, setActive }) => {
       >
         Top Tracks
       </Typography>
+    </Box>
+    {isVisible && <p style={{color:"white",fontFamily:"Inter",opacity:"90%",fontWeight:"500"}} onClick={()=>setIsVisible(!isVisible)}>Go Back</p>}
+
     </Box>
   );
 };

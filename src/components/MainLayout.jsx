@@ -25,12 +25,8 @@ const MainLayout = () => {
       }}
     >
       <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          padding: "1rem",
-        }}
+      className="mainLayoutConatiner"
+      
       >
         <div>
           <img src={Logo} width="133.31px" height="40px" alt="Logo" />
@@ -40,7 +36,7 @@ const MainLayout = () => {
           <img src={Profile} width="48px" height="48px" alt="Profile" />
         </div>
       </Box>
-      <Box sx={{ width: "85%" }}>
+      <Box sx={{ width: "85%",overflow:"hidden" }}>
         <Songs handleColor={handleColor} />
       </Box>
     </Box>

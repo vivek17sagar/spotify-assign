@@ -12,7 +12,6 @@ import "./SongList.css";
 
 const SongList = ({ songList, handleColor, setSong, active }) => {
   const [durations, setDurations] = useState([]);
-
   useEffect(() => {
     const loadDurations = () => {
       songList.forEach((item, index) => {
@@ -44,15 +43,12 @@ const SongList = ({ songList, handleColor, setSong, active }) => {
     setSong(index);
   };
 
+
   return (
     <Box>
       <List
-        sx={{
-          width: "100%",
-          color: "white",
-          fontFamily: "Inter",
-          height: "70vh",
-        }}
+      
+        className='songList'
       >
         {active === 0 ? (
           songList.length < 1 ? (
@@ -67,7 +63,7 @@ const SongList = ({ songList, handleColor, setSong, active }) => {
                 <ListItemAvatar>
                   <Avatar>
                     <img
-                      src={item?.cover} // Assuming the cover is still in base64 format
+                      src={item?.cover} 
                       alt="uploaded document"
                     />
                   </Avatar>
@@ -104,7 +100,7 @@ const SongList = ({ songList, handleColor, setSong, active }) => {
                   <ListItemAvatar>
                     <Avatar>
                       <img
-                        src={item?.cover} // Assuming the cover is still in base64 format
+                        src={item?.cover}
                         alt="uploaded document"
                       />
                     </Avatar>
