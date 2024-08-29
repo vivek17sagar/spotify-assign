@@ -2,7 +2,6 @@ import { Box, Typography } from "@mui/material";
 import { useState } from "react";
 
 const Sidebar = ({ active, setActive,isVisible,setIsVisible }) => {
-  console.log(isVisible);
   return (
     <Box sx={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
     <Box

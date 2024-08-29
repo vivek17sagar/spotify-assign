@@ -22,7 +22,6 @@ export const Songs = ({ handleColor }) => {
       return art.includes(searchParam) || nam.includes(searchParam);
     });
 
-    console.log(getSearchSong);
     setFilterSong(getSearchSong);
   };
 

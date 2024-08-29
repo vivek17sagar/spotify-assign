@@ -110,9 +110,7 @@ const Player = ({ song, index, setSong, songList,handleResponsive }) => {
     return `${minutes}:${formattedSeconds}`;
   }
 
-  console.log(secondsToMinutes(125)); 
 
-  console.log(songList[index]);
   return (
     <Box
       sx={{

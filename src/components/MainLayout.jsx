@@ -9,7 +9,6 @@ const MainLayout = () => {
   const [bgColor, setBgColor] = useState("#160D5E");
 
   const handleColor = (color) => {
-    console.log("color ==> ", color);
     setBgColor(color);
   };
 
